@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterCloneApp", "TwitterCloneApp\TwitterCloneApp.csproj", "{1CBC8C88-C139-40D5-AEBD-4C4FDF448201}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterCloneApp.Tests", "TwitterCloneApp.Tests\TwitterCloneApp.Tests.csproj", "{8280F5C4-9647-4EFF-B65C-6E3E62390901}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1CBC8C88-C139-40D5-AEBD-4C4FDF448201}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CBC8C88-C139-40D5-AEBD-4C4FDF448201}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CBC8C88-C139-40D5-AEBD-4C4FDF448201}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CBC8C88-C139-40D5-AEBD-4C4FDF448201}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8280F5C4-9647-4EFF-B65C-6E3E62390901}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8280F5C4-9647-4EFF-B65C-6E3E62390901}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8280F5C4-9647-4EFF-B65C-6E3E62390901}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8280F5C4-9647-4EFF-B65C-6E3E62390901}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

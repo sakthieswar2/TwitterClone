@@ -1,0 +1,99 @@
+﻿@model TwitterCloneApp.Models.TweetModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+
+
+<div style="margin-top:2%;"></div>
+<div class="row">
+    <div class="col-md-4">
+        <div>
+            <span>Follow</span>
+            <br />
+            <input class="form-control form-rounded" id="txtUserSearch" type="text" />
+        </div>
+        <div>
+            <label>Tweets: @Model.no_of_tweets</label> <br />
+            <label>Following: @Model.no_of_followings</label><br />
+            <label>Followers: @Model.no_of_followers</label>
+        </div>
+    </div>
+    <div class="col-md-8 ">
+        <div class="row">
+            <div class="col-md-12">
+                <label>What are you doing?</label>
+                <input type="hidden" id="hdUserId" value="@Model.username" />
+                <br />
+                <textarea style="width:100% !important; max-width:100% !important" id="txtTweet"></textarea>
+                <br />
+                <div class="form-group">
+                    <input type="button" id="btnUpdateTweet" value="Update" class="btn btn-default pull-right" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <table class="table">
+                    @foreach (var tweets in Model.tweets)
+                    {
+                        <tr>
+                            <td> @tweets.message </td>
+                            <td> @tweets.user_id </td>
+                            <td> @tweets.craeted</td>
+                            <td>
+                                @if (tweets.user_id.Equals(Session["username"].ToString()))
+                                { @Html.ActionLink("Edit", "Index")}
+                            </td>
+                        </tr>
+
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btnUpdateTweet').click(function
+            () {
+            var person = {
+                user_id: $("#hdUserId").val(),
+                message: $("#txtTweet").val(),
+                craeted: new Date()
+            }
+            $.ajax({
+                url: '/Home/Update',
+                type: 'post',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: JSON.stringify(person),
+                success: function (data) {
+                    alert('Update method success. ' + data);
+                }
+            });
+            //alert('Update method called.');
+        });
+
+        $('#txtUserSearch').on("keypress", function (e) {
+            if (e.keyCode == 13) {
+                var username = $("#txtUserSearch").val();
+                $.ajax({
+                    url: '/Account/SearchUser?username=' + username,
+                    type: 'get',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    cache: false,
+                    //data: JSON.stringify(username = username),
+                    success: function (data) {
+                        location.href = '/Account/Userprofile?username=' + username
+                    }
+                });
+                //alert($("#txtUserSearch").val());
+            }
+        });
+    });
+</script>

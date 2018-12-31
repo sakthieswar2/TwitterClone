@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FSEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="following">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="user_id" Type="varchar" MaxLength="25" />
+    <Property Name="following_id" Type="varchar" MaxLength="25" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="person">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="50" />
+    <Property Name="fullname" Type="varchar" MaxLength="30" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="joined" Type="datetime" />
+    <Property Name="active" Type="bit" />
+  </EntityType>
+  <EntityType Name="tweet">
+    <Key>
+      <PropertyRef Name="tweet_id" />
+    </Key>
+    <Property Name="tweet_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="varchar" MaxLength="25" />
+    <Property Name="message" Type="varchar" MaxLength="140" />
+    <Property Name="craeted" Type="datetime" />
+  </EntityType>
+  <Association Name="FK__following__follo__286302EC">
+    <End Role="person" Type="Self.person" Multiplicity="0..1" />
+    <End Role="following" Type="Self.following" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="person">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="following">
+        <PropertyRef Name="following_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__following__user___276EDEB3">
+    <End Role="person" Type="Self.person" Multiplicity="0..1" />
+    <End Role="following" Type="Self.following" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="person">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="following">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tweet__user_id__2B3F6F97">
+    <End Role="person" Type="Self.person" Multiplicity="0..1" />
+    <End Role="tweet" Type="Self.tweet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="person">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="tweet">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FSEModelStoreContainer">
+    <EntitySet Name="following" EntityType="Self.following" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="person" EntityType="Self.person" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tweet" EntityType="Self.tweet" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__following__follo__286302EC" Association="Self.FK__following__follo__286302EC">
+      <End Role="person" EntitySet="person" />
+      <End Role="following" EntitySet="following" />
+    </AssociationSet>
+    <AssociationSet Name="FK__following__user___276EDEB3" Association="Self.FK__following__user___276EDEB3">
+      <End Role="person" EntitySet="person" />
+      <End Role="following" EntitySet="following" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tweet__user_id__2B3F6F97" Association="Self.FK__tweet__user_id__2B3F6F97">
+      <End Role="person" EntitySet="person" />
+      <End Role="tweet" EntitySet="tweet" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
